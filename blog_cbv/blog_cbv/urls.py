@@ -24,9 +24,11 @@ from debug_toolbar.toolbar import debug_toolbar_urls
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('apps.blog.urls')),
-]
+    path('', include('apps.accounts.urls')),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
 
+]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-    urlpatterns += debug_toolbar_urls()
+    urlpatterns += [path('__debug__/', include('debug_toolbar.urls'))]
